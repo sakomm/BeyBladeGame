@@ -1,12 +1,15 @@
-import pygame as pg
+""" Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
+ tool so might use that
+"""
+import pygame
 
-pg.init()
-screen = pg.display.set_mode((500,500))
-Exit_Event = False
+pygame.init()
+screen = pygame.display.set_mode((1000, 1000))
+done = False
 
-while not Exit_Event:
-        for event in pg.event.get():
-                if event.type == pg.QUIT:
+while not done:
+        for event in pygame.event.get():
+                if event.type == pygame.QUIT:
                         done = True
 
-        pg.display.flip()
+        pygame.display.flip()
