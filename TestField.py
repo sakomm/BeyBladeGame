@@ -12,5 +12,6 @@ while not done:
                 if event.type == pygame.QUIT:
                         done = True
 
+
         pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
         pygame.display.flip()
