@@ -16,6 +16,5 @@ while not done:
         pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
         pygame.display.flip()
 
-
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
 # make random movement
