@@ -12,14 +12,19 @@ screen = pygame.display.set_mode((1000, 1000))
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
 #Background obj
 Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
-screen.blit(Background,(0,0))   
+screen.blit(Background,(0,0))
 
-#player obj
+#player obj - Pegasus
 player = pygame.image.load('PegasusIsLame.jpg') # i think i spelled Pegasus wrong
-position = player.get_rect()
-screen.blit(player, position)
+position = player.get_rect() #make Pegasus smaller its a bit big
+screen.blit(player, (100,100))
 pygame.display.update()
 #https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
+
+# player2 obj - El Drago
+player = pygame.image.load('ELDrago.png') # i think i spelled Pegasus wrong
+screen.blit(player, (650,650))
+pygame.display.update()
 
 done = False
 
@@ -27,15 +32,12 @@ while not done:
         for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                         done = True
-
         #screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
                                     # format error screen.blit(object (x,y))
             # update probaby needs to happen hear in loop
 
         #pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
         pygame.display.flip()
-
-
 
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
 # make random movement
