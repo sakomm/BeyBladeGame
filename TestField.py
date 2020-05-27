@@ -46,7 +46,8 @@ while not done:
         screen.blit(player, (100,100))
 
 
-        player2 = pygame.transform.rotate(player2,90)
+        player2 = pygame.transform.rotate(player2,-90)
+        screen.delay(2)
         screen.blit(player2, (650,650))
 
         pygame.display.flip()
