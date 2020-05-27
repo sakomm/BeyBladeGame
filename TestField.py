@@ -6,7 +6,7 @@ import pygame #from pygame.locals import * # WTF am i doing here, where the fuck
 pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
 
-
+# this is a test 
 screen = pygame.display.set_mode((1200, 1200))
 pygame.display.set_caption('BeyBlade Game')
 
