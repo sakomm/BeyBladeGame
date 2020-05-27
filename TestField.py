@@ -9,16 +9,19 @@ pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
 screen = pygame.display.set_mode((1000, 1000))
 
-#player obj
+# image needs to be in the main file struct cant store in seprate folder, see if u can fix
 
+#player obj
 player = pygame.image.load('PegasusIsLame.jpg') # i think i spelled Pegasus wrong
 position = player.get_rect()
 screen.blit(player, position)
 pygame.display.update()
-
-# image needs to be in the main file struct cant store in seprate folder, see if u can fix
 #https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
 
+
+#Background obj
+Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
+screen.blit(Background,(0,0))
 
 done = False
 
@@ -27,7 +30,9 @@ while not done:
                 if event.type == pygame.QUIT:
                         done = True
 
-        screen.blit(player,500,500) #blit is temporary and crashes , How to fix?
+        #screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
+                                    # format error screen.blit(object (x,y))
+            # update probaby needs to happen hear in loop
 
         #pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
         pygame.display.flip()
