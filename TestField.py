@@ -5,8 +5,7 @@ import pygame #from pygame.locals import * # WTF am i doing here, where the fuck
 
 pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
-#litlitlit
-#litlitlitlit
+
 
 screen = pygame.display.set_mode((1200, 1200))
 pygame.display.set_caption('BeyBlade Game')
@@ -48,7 +47,6 @@ while not done:
 
 
         player2 = pygame.transform.rotate(player2,-90)
-        screen.delay(2)
         screen.blit(player2, (650,650))
 
         pygame.display.flip()
