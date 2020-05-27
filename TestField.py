@@ -7,7 +7,7 @@ pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
 
 
-screen = pygame.display.set_mode((1000, 1000))
+screen = pygame.display.set_mode((1200, 1200))
 pygame.display.set_caption('BeyBlade Game')
 
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
