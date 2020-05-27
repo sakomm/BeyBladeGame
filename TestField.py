@@ -16,6 +16,7 @@ Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
 screen.blit(Background,(0,0))
 
     #load method can have a specfied path - take that stack overflow u dumb bitch
+    #nvm they were right it cant be path specfic
 
 #player obj - Pegasus
 player = pygame.image.load('PegasusIsLame.jpg') # i think i spelled Pegasus wrong
