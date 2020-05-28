@@ -1,6 +1,6 @@
 import numpy as np
 from matplotlib import pyplot as plt
-import random
+import random # not random enough or maybe it is good enough idk
 ArrX = []
 Arry = []
 
@@ -12,7 +12,6 @@ for i in range(1,100,1):
     Arry.append(y)
 
 plt.plot(ArrX, Arry)
-plt.show()
 
 ArrX2 = []
 ArrY2 = []
