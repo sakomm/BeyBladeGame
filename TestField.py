@@ -8,7 +8,7 @@ import numpy # use numpy to model path
 """
 
 pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
-
+ 
 
 # this is a test
 # dab dab
