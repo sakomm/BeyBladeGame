@@ -1,0 +1,34 @@
+mini games that take little time 
+        - introduce a thing for launching beyblades 
+
+        - Health bar 
+            - health is a function of stammina
+            
+        Punish players with physics 
+            -- winners 
+                - F = MA
+                - Kenomatic 
+                - vector problem
+                - what is g
+                - diffrence between weight and mass
+            
+            -- Losers
+                - Circut problems 
+                - Pulley problems
+                - two boxes diff direc on a Pulley
+                - inlined banked curve problem
+                
+            
+        progress  
+
+            - P1 vs P2
+                -Winner fights masonn 
+                and always looses 
+
+                losing player aldredy assigned problem
+
+        
+
+                
+
+        
