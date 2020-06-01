@@ -11,10 +11,10 @@ pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
 # this is a test
 # dab dab
-info = pygame.display.Info() 
-screen_width,screen_height = info.current_w,info.current_h
+info = pygame.display.Info() #coment out this line if u want to manualy set size
+screen_width,screen_height = info.current_w,info.current_h #coment out this line if u want to manualy set size
 
-screen = pygame.display.set_mode((screen_width, screen_height))
+screen = pygame.display.set_mode((screen_width-45, screen_height)) # set size here
 pygame.display.set_caption('BeyBlade Game')
 
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
