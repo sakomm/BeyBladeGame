@@ -1,19 +1,20 @@
 """ Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
  tool so might use that
 """
-import pygame #from pygame.locals import * # WTF am i doing here, where the fuck is locals
-""""
-import numpy # use numpy to model path
+import pygame #from pygame.locals import * # WTF am i doing here, where the fuck is localsmp
+import os
 
-"""
+os.environ['SDL_VIDEO_CENTERED'] = '1'
 
 pygame.init() # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
  
 
 # this is a test
 # dab dab
+info = pygame.display.Info() 
+screen_width,screen_height = info.current_w,info.current_h
 
-screen = pygame.display.set_mode((1200, 1200))
+screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption('BeyBlade Game')
 
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
