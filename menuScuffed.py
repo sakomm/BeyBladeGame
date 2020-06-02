@@ -1,4 +1,6 @@
-import pygame, sys
+import pygame
+import sys
+import os
  
 # Setup pygame/window ---------------------------------------- #
 mainClock = pygame.time.Clock()
@@ -26,6 +28,7 @@ def main_menu():
         mx, my = pygame.mouse.get_pos()
  
         button_1 = pygame.Rect(50, 100, 200, 50)
+        
         if button_1.collidepoint((mx, my)):
             if click:
                 game()

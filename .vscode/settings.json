@@ -1,3 +1,6 @@
 {
-    "python.pythonPath": "C:\\Users\\sakom\\AppData\\Local\\Programs\\Python\\Python37\\python.exe"
+    "python.pythonPath": "C:\\Users\\sakom\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
+    "search.smartCase": true,
+    "debug.allowBreakpointsEverywhere": true,
+    "glassit.alpha": 30
 }
