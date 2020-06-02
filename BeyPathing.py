@@ -1,5 +1,5 @@
 # wait this is dumb the player will control it
-import numpy as np
+#import numpy as np
 from matplotlib import pyplot as plt
 import random # not random enough or maybe it is good enough idk
 ArrX = []
