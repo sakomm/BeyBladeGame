@@ -28,7 +28,7 @@ def MainMenu():
     #---------------------------------------------------------------------
     while True:     # add a second button that adds instructions
         #click = False
-        Background = pygame.image.load('BackgroundMain.jpg')
+        Background = pygame.image.load('Images/BackgroundMain.jpg')
         Background = pygame.transform.scale(Background, (1920, 1080))
 
         screen.blit(Background, (0, 0))
