@@ -2,7 +2,7 @@ import sys
 import os
 import pygame
 from pygame.locals import *
-import math
+import time
 
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
@@ -21,8 +21,13 @@ screen = pygame.display.set_mode(
 
 def MainMenu():
     # print(Screen_Width,Screen_Height)
+    # Song Loop ----------------------------------------------------------
+    time.sleep(1)
+    pygame.mixer.music.load("Song/BMF_Song.mp3")
+    pygame.mixer.music.play(-1)
+    #---------------------------------------------------------------------
     while True:     # add a second button that adds instructions
-
+        #click = False
         Background = pygame.image.load('BackgroundMain.jpg')
         Background = pygame.transform.scale(Background, (1920, 1080))
 
@@ -35,10 +40,14 @@ def MainMenu():
 
         if button_1.collidepoint((MouseX, MouseY)):
             if click:
+                pygame.mixer.music.stop()
+
                 MainGame()
 
         if button_2.collidepoint((MouseX, MouseY)):
             if click:
+                pygame.mixer.music.stop()
+
                 Instuctions()
 
         pygame.draw.rect(screen, (0, 0, 0), button_1, 5)
@@ -61,6 +70,7 @@ def MainMenu():
 
         #---------------------------------------------------------------------
 
+
         click = False
         for event in pygame.event.get():
             if event.type == KEYDOWN:
@@ -81,7 +91,7 @@ def Instuctions(): # Make instuctions when everything is done
 
 
 def MainGame():
-    sys.exit()
+    print("test passed")
 
 
 MainMenu()
