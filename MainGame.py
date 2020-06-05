@@ -1,13 +1,16 @@
 """ Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
  tool so might use that
 """
-import pygame  # from pygame.locals import * # WTF am i doing here, where the fuck is locals
-import sys
 import os
+import sys
+
+import pygame  # from pygame.locals import * # WTF am i doing here, where the fuck is locals
+
 """"
 import numpy # use numpy to model path
 
 """
+
 
 # This part is important, creates an array of each bey's images. Cycling through the images makes it spin.
 # Each image is transformed and made smaller to better fit the arena
@@ -82,12 +85,12 @@ i = 0
 speeed = 60
 # x is just something I was testing, it's not needed
 x = 2
-done = False
+done = True
 
-while not done:
+while done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            done = True
+            done = False
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_ESCAPE:
@@ -113,5 +116,8 @@ while not done:
 
     pygame.display.flip()
     pygame.time.delay(speeed)
+
+
+    
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
 # make random movement

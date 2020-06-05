@@ -1,8 +1,9 @@
-import sys
 import os
+import sys
+import time
+
 import pygame
 from pygame.locals import *
-import time
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
 mainClock = pygame.time.Clock()
