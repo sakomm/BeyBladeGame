@@ -3,7 +3,6 @@ import os
 import pygame
 from pygame.locals import *
 import time
-import TestField
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
 mainClock = pygame.time.Clock()
@@ -92,7 +91,7 @@ def Instuctions(): # Make instuctions when everything is done
 
 def MainGame():
     print("test passed")
-    TestField
+    import TestField
 
 
 MainMenu()
