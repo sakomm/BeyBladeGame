@@ -2,7 +2,8 @@
  tool so might use that
 """
 import pygame  # from pygame.locals import * # WTF am i doing here, where the fuck is locals
-
+import sys
+import os
 """"
 import numpy # use numpy to model path
 
@@ -87,6 +88,12 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+
     # screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
     # format error screen.blit(object (x,y))
     # update probaby needs to happen hear in loop
