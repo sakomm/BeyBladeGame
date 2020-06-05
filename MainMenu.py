@@ -91,7 +91,7 @@ def Instuctions(): # Make instuctions when everything is done
 
 def MainGame():
     print("test passed")
-    import TestField
+    import MainGame
 
 
 MainMenu()
