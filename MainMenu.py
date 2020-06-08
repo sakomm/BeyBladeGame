@@ -30,6 +30,7 @@ def MainMenu():
         #click = False
         Background = pygame.image.load('Images/BackgroundMain.jpg')
         Background = pygame.transform.scale(Background, (1920, 1080))
+        
 
         screen.blit(Background, (0, 0))
 
@@ -92,7 +93,7 @@ def Instuctions(): # Make instuctions when everything is done
 
 def MainGame():
     print("test passed")
-    import MainGame
+    import MainGame # if this fucjks up make it a shell proccesp
 
 
 MainMenu()
