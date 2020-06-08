@@ -4,7 +4,8 @@
 import os
 import sys
 
-import pygame  # from pygame.locals import * # WTF am i doing here, where the fuck is locals
+# from pygame.locals import * # WTF am i doing here, where the fuck is locals
+import pygame as pg
 
 """"
 import numpy # use numpy to model path
@@ -13,57 +14,56 @@ import numpy # use numpy to model path
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
 
 
-
 # This part is important, creates an array of each bey's images. Cycling through the images makes it spin.
 # Each image is transformed and made smaller to better fit the arena
-player1Spin = [pygame.transform.scale(pygame.image.load('Images/Pegasus/Pegasus1.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+player1Spin = [pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus1.png'), (220, 220)),
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus2.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus3.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus4.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus5.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus6.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus7.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/Pegasus/Pegasus8.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('Images/Pegasus/Pegasus9.png'), (220, 220))]
+               pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus9.png'), (220, 220))]
 
-player2Spin = [pygame.transform.scale(pygame.image.load('Images/LDrago/LDrago1.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+player2Spin = [pg.transform.scale(pg.image.load('Images/LDrago/LDrago1.png'), (220, 220)),
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago2.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago3.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago4.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago5.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago6.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago7.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load(
+               pg.transform.scale(pg.image.load(
                    'Images/LDrago/LDrago8.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('Images/LDrago/LDrago9.png'), (220, 220))]
+               pg.transform.scale(pg.image.load('Images/LDrago/LDrago9.png'), (220, 220))]
 
-pygame.init()  # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
+pg.init()  # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
-screenInfo = pygame.display.Info()  # grabbing
+screenInfo = pg.display.Info()  # grabbing
 Screen_Width = screenInfo.current_w
 Screen_Height = screenInfo.current_h
-screen = pygame.display.set_mode(
+screen = pg.display.set_mode(
     (Screen_Width, Screen_Height))  # set size here
 
-pygame.display.set_caption('BeyBlade Game')
+pg.display.set_caption('BeyBlade Game')
 
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
 # Background obj
-Background = pygame.image.load('Images/ArenaBeyBladeVroom.jpg')
-color = [255,255,255]
+Background = pg.image.load('Images/ArenaBeyBladeVroom.jpg')
+color = [255, 255, 255]
 screen.fill(color)
 screen.blit(Background, (360, 0))
 
@@ -71,22 +71,25 @@ screen.blit(Background, (360, 0))
 
 # player obj - Pegasus
 player = player1Spin[0]
-player = pygame.transform.scale(player, (360, 300))
+player1Health = 100
+player = pg.transform.scale(player, (360, 300))
 position = player.get_rect()
 screen.blit(player, (250, 250))
 
 screen.blit(Background, position, position)
-#pygame.display.update()
+# pygame.display.update()
 # https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
 
 # player2 obj - El Drago
 player2 = player2Spin[0]
-player2 = pygame.transform.scale(player2, (250, 250))
+player2 = pg.transform.scale(player2, (250, 250))
 # i think i spelled Pegasus wrong
 # nah you didn't
+
+player2Health = 100
 screen.blit(player2, (650, 650))
-pygame.display.update()
-clock = pygame.time.Clock()
+pg.display.update()
+clock = pg.time.Clock()
 i = 0
 # Speeed is the refresh rate of the game, making it smaller makes it seem as if both beys are going faster. Lowest number
 # is 1 highest number is 80. After 60 it starts to look wonky.
@@ -96,18 +99,12 @@ x = 2
 done = True
 
 while done:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = False
-
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                pygame.quit()
-                sys.exit()
 
     # screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
     # format error screen.blit(object (x,y))
     # update probaby needs to happen hear in loop
+
+    pg.draw.rect(screen, [255, 255, 255], (100, 50, 100, 100))
 
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
     screen.blit(Background, (360, 0))
@@ -122,10 +119,9 @@ while done:
     i = i % 9
     screen.blit(player2, (550, 500))
 
-    pygame.display.flip()
-    pygame.time.delay(speeed)
+    pg.display.flip()
+    pg.time.delay(speeed)
 
 
-    
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
 # make random movement

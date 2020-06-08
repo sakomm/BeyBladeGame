@@ -18,6 +18,19 @@ screen = pygame.display.set_mode(
 
 
 def Info():
+
     while True:
         screen.fill([69,72,165])
+        pygame.display.update()
 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                done = False
+
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_ESCAPE:
+                    pygame.quit()
+                    sys.exit()
+
+
+Info()

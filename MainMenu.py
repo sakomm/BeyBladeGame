@@ -88,7 +88,7 @@ def MainMenu():
 
 
 def Instuctions(): # Make instuctions when everything is done 
-    sys.exit()
+    import Instructions
 
 
 def MainGame():
