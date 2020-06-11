@@ -117,7 +117,7 @@ while done:
     # looking spinning. not that useful but thought u should know
     i += 4
     i = i % 9
-    screen.blit(player2, (550, 500))
+    screen.blit(player2, (550, 500))    
 
     pg.display.flip()
     pg.time.delay(speeed)
