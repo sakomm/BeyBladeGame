@@ -1,8 +1,10 @@
 """ Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
  tool so might use that
 """
-import pygame  # from pygame.locals import * # WTF am i doing here, where the fuck is locals
-
+import pygame
+from pygame.locals import *
+#WTF am i doing here, where the fuck is locals
+from BeyBlade import BeyBlade
 """"
 import numpy # use numpy to model path
 
@@ -20,15 +22,15 @@ player1Spin = [pygame.transform.scale(pygame.image.load('Pegasus/Pegasus1.png'),
                pygame.transform.scale(pygame.image.load('Pegasus/Pegasus8.png'), (220, 220)),
                pygame.transform.scale(pygame.image.load('Pegasus/Pegasus9.png'), (220, 220))]
 
-player2Spin = [pygame.transform.scale(pygame.image.load('LDrago/LDrago1.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago2.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago3.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago4.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago5.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago6.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago7.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago8.png'), (220, 220)),
-               pygame.transform.scale(pygame.image.load('LDrago/LDrago9.png'), (220, 220))]
+player2Spin = [pygame.transform.scale(pygame.image.load('LDrago/LDrago1.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago2.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago3.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago4.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago5.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago6.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago7.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago8.png'), (200, 200)),
+               pygame.transform.scale(pygame.image.load('LDrago/LDrago9.png'), (200, 200))]
 
 pygame.init()  # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
 
@@ -44,30 +46,33 @@ screen.blit(Background, (0, 0))
 # nvm they were right it cant be path specfic
 
 # player obj - Pegasus
-player = player1Spin[0]
-player = pygame.transform.scale(player, (300, 300))
-position = player.get_rect()
-screen.blit(player, (250, 250))
+player = BeyBlade(player1Spin, 1)
+position = player.rect
+colisionimage = BeyBlade(player2Spin,1)
+colisionimage.rect.x = 500
+colisionimage.rect.y = 150
 
-screen.blit(Background, position, position)
 pygame.display.update()
 # https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
 
 # player2 obj - El Drago
 player2 = player2Spin[0]
-player2 = pygame.transform.scale(player2, (250, 250))
-# i think i spelled Pegasus wrong
-# nah you didn't
+
 screen.blit(player2, (650, 650))
 pygame.display.update()
 clock = pygame.time.Clock()
+
+#pygame.sprite.collide_circle(player, player2)
 i = 0
 # Speeed is the refresh rate of the game, making it smaller makes it seem as if both beys are going faster. Lowest number
 # is 1 highest number is 80. After 60 it starts to look wonky.
-speeed = 60
+speeed = 100
 # x is just something I was testing, it's not needed
 x = 2
+playerx = 15
 done = False
+sprites = pygame.sprite.Group()
+sprites.add(colisionimage)
 
 while not done:
     for event in pygame.event.get():
@@ -79,16 +84,23 @@ while not done:
 
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
     screen.blit(Background, (0, 0))
-    player = player1Spin[i]
-    screen.blit(player, (650 - x, 250))
     player2 = player2Spin[i]
     # Again, please ignore x.
     x += 25
     # changing i also changes how the beyblades look like when spinning. i = 1 means normal i = 4 means slightly faster
     # looking spinning. not that useful but thought u should know
-    i += 4
+    i += 1
     i = i % 9
     screen.blit(player2, (550, 500))
+    hit = pygame.sprite.spritecollide(player, sprites, False, pygame.sprite.collide_mask)
+    if pygame.sprite.collide_mask(player, colisionimage):
+        pygame.draw.polygon(screen, (200, 150, 150), colisionimage.olist, 0)
+        playerx = playerx * -1
+
+    player.update(playerx)
+    colisionimage.update(0)
+    colisionimage.draw(screen,0)
+    player.draw(screen,150)
 
     pygame.display.flip()
     pygame.time.delay(speeed)
