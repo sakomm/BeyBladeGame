@@ -5,6 +5,7 @@ import pygame
 from pygame.locals import *
 #WTF am i doing here, where the fuck is locals
 from BeyBlade import BeyBlade
+from GeneralSprite import GeneralSprite
 """"
 import numpy # use numpy to model path
 
@@ -42,16 +43,20 @@ pygame.display.set_caption('BeyBlade Game')
 Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
 screen.blit(Background, (0, 0))
 
+
+
 # load method can have a specfied path - take that stack overflow u dumb bitch
 # nvm they were right it cant be path specfic
+arena = GeneralSprite(pygame.image.load('arenaBounds.png').convert())
+
 
 # player obj - Pegasus
 player = BeyBlade(player1Spin, 1)
 position = player.rect
 colisionimage = BeyBlade(player2Spin,1)
 colisionimage.rect.x = 500
-colisionimage.rect.y = 150
-
+colisionimage.rect.y = 200
+player.rect.y = 0
 pygame.display.update()
 # https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
 
@@ -81,7 +86,7 @@ while not done:
     # screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
     # format error screen.blit(object (x,y))
     # update probaby needs to happen hear in loop
-
+    print(position)
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
     screen.blit(Background, (0, 0))
     player2 = player2Spin[i]
@@ -92,14 +97,13 @@ while not done:
     i += 1
     i = i % 9
     screen.blit(player2, (550, 500))
-    hit = pygame.sprite.spritecollide(player, sprites, False, pygame.sprite.collide_mask)
-    if pygame.sprite.collide_mask(player, colisionimage):
+    if pygame.sprite.spritecollide(player, sprites, False, pygame.sprite.collide_mask):
         pygame.draw.polygon(screen, (200, 150, 150), colisionimage.olist, 0)
         playerx = playerx * -1
 
     player.update(playerx)
     colisionimage.update(0)
-    colisionimage.draw(screen,0)
+    colisionimage.draw(screen,200)
     player.draw(screen,150)
 
     pygame.display.flip()
