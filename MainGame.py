@@ -14,7 +14,6 @@ import numpy # use numpy to model path
 """
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
 
-
 # This part is important, creates an array of each bey's images. Cycling through the images makes it spin.
 # Each image is transformed and made smaller to better fit the arena
 player1Spin = [pg.transform.scale(pg.image.load(
@@ -63,11 +62,53 @@ screen = pg.display.set_mode(
 
 pg.display.set_caption('BeyBlade Game')
 
+player1Counter = 0
+player2Counter = 0
+
+ClickPostWidth = Screen_Width // 2 
+ClickPostHeight = Screen_Height // 2  - 100
+# pregame sextion
+timer = 11
+while timer != 0:
+    timer -= 1
+    pg.time.delay(500)
+    for event in pg.event.get():
+        if event.type == KEYDOWN:
+            if event.key == pg.K_q:
+                player1Counter += 1
+
+        if event.type == KEYDOWN:
+            if event.key == pg.K_m:
+                player2Counter += 1
+
+    screen.fill((114, 89, 255))
+    myfont = pg.font.SysFont('Robotico', 150)
+    
+
+    text = str(timer)
+    textsurface = myfont.render(text, False, (0, 0, 0))
+    screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
+
+    pg.display.flip()
+    
+    print("Player 1 Count:{}, Player 2 Count {}".format(
+        player1Counter, player2Counter))
+
+ClickPostWidth -= 250
+pg.time.delay(700)
+textsurface = myfont.render("LET IT RIP!", False, (0, 0, 0))
+screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
+
+pg.display.flip()
+
+
+
+
+
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
 # Background obj
 Background = pg.image.load('Images/ArenaBeyBladeVroom.jpg')
-color = [255, 255, 255]
-screen.fill(color)
+
 screen.blit(Background, (360, 0))
 
 # load method can have a specfied path - take that stack overflow u dumb bitch
@@ -99,43 +140,9 @@ i = 0
 speeed = 60
 # x is just something I was testing, it's not needed
 x = 2
+
 done = True
-player1Counter = 0
-player2Counter = 0
-
-ClickPostWidth = Screen_Width // 2 
-ClickPostHeight = Screen_Height // 2  - 100
-# pregame sextion
-timer = 10
-while timer != 0:
-    timer -= 1
-    pg.time.delay(500)
-    for event in pg.event.get():
-        if event.type == KEYDOWN:
-            if event.key == pg.K_q:
-                player1Counter += 1
-
-        if event.type == KEYDOWN:
-            if event.key == pg.K_m:
-                player2Counter += 1
-
-    if timer == 1:
-        timer = "LET IT RIP"
-        ClickPostWidth -= 250
-
-    screen.fill((114, 89, 255))
-    myfont = pg.font.SysFont('Robotico', 150)
-    
-
-    text = str(timer)
-    textsurface = myfont.render(text, False, (0, 0, 0))
-    screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
-
-    pg.display.flip()
-
-    print("Player 1 Count:{}, Player 2 Count {}".format(
-        player1Counter, player2Counter))
-
+screen.fill((114, 89, 255))
 
 while done:
 
