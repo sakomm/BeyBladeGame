@@ -103,6 +103,8 @@ done = True
 player1Counter = 0
 player2Counter = 0
 
+ClickPostWidth = Screen_Width // 2 
+ClickPostHeight = Screen_Height // 2  - 100
 # pregame sextion
 timer = 10
 while timer != 0:
@@ -113,24 +115,27 @@ while timer != 0:
             if event.key == pg.K_q:
                 player1Counter += 1
 
-    for event in pg.event.get():
         if event.type == KEYDOWN:
-            if event.key == pg.K_KP_DIVIDE:
+            if event.key == pg.K_m:
                 player2Counter += 1
-    
+
     if timer == 1:
         timer = "LET IT RIP"
-    
+        ClickPostWidth -= 250
+
     screen.fill((114, 89, 255))
     myfont = pg.font.SysFont('Robotico', 150)
+    
 
-    textsurface = myfont.render(str(timer), False, (0, 0, 0))
-    screen.blit(textsurface, (Screen_Width//2, Screen_Height//2))
+    text = str(timer)
+    textsurface = myfont.render(text, False, (0, 0, 0))
+    screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
 
     pg.display.flip()
 
     print("Player 1 Count:{}, Player 2 Count {}".format(
         player1Counter, player2Counter))
+
 
 while done:
 
