@@ -165,15 +165,19 @@ while done:
     i = i % 9
     screen.blit(player2, (550, 500))
 
+
     for event in pg.event.get():
         if event.type == KEYDOWN:
             if event.key == K_ESCAPE:
                 pg.quit()
                 sys.exit()
+    #---------------------------------------------HEALTH BARS-------------------------------------------------------------------
+    pg.draw.rect(screen, [255,255,255], (50,100,0,0))    
+
+    #---------------------------------------------HEALTH BARS-------------------------------------------------------------------
 
     pg.display.flip()
     pg.time.delay(speeed)
-
 
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
 # make random movement

@@ -5,6 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "java",
+            "name": "CodeLens (Launch) - doesJavaWork",
+            "request": "launch",
+            "mainClass": "doesJavaWork",
+            "projectName": "BeyBladeGame_7a1b5a3b"
+        },
+        {
             "name": "Python: Current File",
             "type": "python",
             "request": "launch",
