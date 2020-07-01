@@ -1,6 +1,3 @@
-""" Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
- tool so might use that
-"""
 import pygame
 from pygame.locals import *
 #WTF am i doing here, where the fuck is locals
@@ -33,37 +30,39 @@ player2Spin = [pygame.transform.scale(pygame.image.load('LDrago/LDrago1.png'), (
                pygame.transform.scale(pygame.image.load('LDrago/LDrago8.png'), (200, 200)),
                pygame.transform.scale(pygame.image.load('LDrago/LDrago9.png'), (200, 200))]
 
-pygame.init()  # isnt inatilizing secondary modules GARBAGE SHIT FACE CODE
+pygame.init()
 
 screen = pygame.display.set_mode((1200, 1200))
+
+Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
+
+boundsPicture = pygame.transform.scale(pygame.image.load('bounds.png'), (750, 750))
+
 pygame.display.set_caption('BeyBlade Game')
 
 # image needs to be in the main file struct cant store in seprate folder, see if u can fix
 # Background obj
-Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
-screen.blit(Background, (0, 0))
-
-
 
 # load method can have a specfied path - take that stack overflow u dumb bitch
 # nvm they were right it cant be path specfic
-arena = GeneralSprite(pygame.image.load('arenaBounds.png').convert())
 
+arena = GeneralSprite(boundsPicture)
+arena.rect.y = 220
+arena.rect.x = 220
 
 # player obj - Pegasus
-player = BeyBlade(player1Spin, 1)
-position = player.rect
-colisionimage = BeyBlade(player2Spin,1)
-colisionimage.rect.x = 500
-colisionimage.rect.y = 200
-player.rect.y = 0
+player1 = BeyBlade(player1Spin, 1)
+position = player1.rect
+player2 = BeyBlade(player2Spin,1)
+player2.rect.x = 500
+player2.rect.y = 200
+player1.rect.x = 300
+player1.rect.y = 700
 pygame.display.update()
 # https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
 
 # player2 obj - El Drago
-player2 = player2Spin[0]
 
-screen.blit(player2, (650, 650))
 pygame.display.update()
 clock = pygame.time.Clock()
 
@@ -71,13 +70,12 @@ clock = pygame.time.Clock()
 i = 0
 # Speeed is the refresh rate of the game, making it smaller makes it seem as if both beys are going faster. Lowest number
 # is 1 highest number is 80. After 60 it starts to look wonky.
-speeed = 100
-# x is just something I was testing, it's not needed
-x = 2
+speeed = 50
 playerx = 15
 done = False
 sprites = pygame.sprite.Group()
-sprites.add(colisionimage)
+sprites.add(player2)
+sprites.add(arena)
 
 while not done:
     for event in pygame.event.get():
@@ -89,23 +87,20 @@ while not done:
     print(position)
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
     screen.blit(Background, (0, 0))
-    player2 = player2Spin[i]
     # Again, please ignore x.
-    x += 25
     # changing i also changes how the beyblades look like when spinning. i = 1 means normal i = 4 means slightly faster
     # looking spinning. not that useful but thought u should know
     i += 1
     i = i % 9
-    screen.blit(player2, (550, 500))
-    if pygame.sprite.spritecollide(player, sprites, False, pygame.sprite.collide_mask):
-        pygame.draw.polygon(screen, (200, 150, 150), colisionimage.olist, 0)
+    if not pygame.sprite.spritecollide(player1, sprites, False, pygame.sprite.collide_mask):
         playerx = playerx * -1
 
-    player.update(playerx)
-    colisionimage.update(0)
-    colisionimage.draw(screen,200)
-    player.draw(screen,150)
-
+    print(arena.rect)
+    player1.update(playerx)
+    player2.update(0)
+    player2.draw(screen,200)
+    player1.draw(screen,400)
+    arena.update()
     pygame.display.flip()
     pygame.time.delay(speeed)
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
