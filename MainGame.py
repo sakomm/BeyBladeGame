@@ -4,6 +4,8 @@
 import os
 import sys
 
+
+
 # from pygame.locals import * # WTF am i doing here, where the fuck is locals
 import pygame as pg
 from pygame.locals import *
@@ -97,9 +99,8 @@ while timer != 0:
         player1Counter, player2Counter))
 
 ClickPostWidth -= 250
-
-textsurface = myfont.render("LET IT RIP!", False, (0, 0, 0))
-
+pg.mixer.music.load("Song/letRip.mp3")
+pg.mixer.music.play(0)
 screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
 
 pg.display.flip()
@@ -175,10 +176,11 @@ while done:
                 pg.quit()
                 sys.exit()
     #---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-    pg.draw.rect(healthSurface, [255,255,255], (50,100,0,0))    
+    pg.draw.rect(healthSurface,[255,255,255], (50,100,0,0))
 
     #---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-
+    
+    #screen.blit(healthSurface)
     pg.display.flip()
     pg.time.delay(speeed)
 
