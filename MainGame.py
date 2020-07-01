@@ -3,7 +3,6 @@
 """
 import os
 import sys
-import time
 
 # from pygame.locals import * # WTF am i doing here, where the fuck is locals
 import pygame as pg
@@ -68,6 +67,9 @@ player2Counter = 0
 ClickPostWidth = Screen_Width // 2 
 ClickPostHeight = Screen_Height // 2  - 100
 # pregame sextion
+
+healthSurface = pg.surface.Surface((Screen_Width, Screen_Height))
+
 timer = 11
 while timer != 0:
     timer -= 1
@@ -77,7 +79,7 @@ while timer != 0:
             if event.key == pg.K_q:
                 player1Counter += 1
 
-        if event.type == KEYDOWN:
+        #if event.type == KEYDOWN:
             if event.key == pg.K_m:
                 player2Counter += 1
 
@@ -95,8 +97,9 @@ while timer != 0:
         player1Counter, player2Counter))
 
 ClickPostWidth -= 250
-pg.time.delay(700)
+
 textsurface = myfont.render("LET IT RIP!", False, (0, 0, 0))
+
 screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
 
 pg.display.flip()
@@ -172,7 +175,7 @@ while done:
                 pg.quit()
                 sys.exit()
     #---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-    pg.draw.rect(screen, [255,255,255], (50,100,0,0))    
+    pg.draw.rect(healthSurface, [255,255,255], (50,100,0,0))    
 
     #---------------------------------------------HEALTH BARS-------------------------------------------------------------------
 
