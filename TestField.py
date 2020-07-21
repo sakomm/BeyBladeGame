@@ -4,6 +4,7 @@ import sys
 import pygame
 from pygame.locals import *
 
+import random
 #WTF am i doing here, where the fuck is locals
 from BeyBlade import BeyBlade
 from GeneralSprite import GeneralSprite
@@ -72,8 +73,8 @@ position = player1.rect
 player2 = BeyBlade(player2Spin,1)
 player2.rect.x = 500
 player2.rect.y = 200
-player1.rect.x = 300
-player1.rect.y = 700
+player1.rect.x = 200
+player1.rect.y = 200
 pygame.display.update()
 # https://www.pygame.org/docs/ref/transform.html#pygame.transform.rotate
 
@@ -87,10 +88,16 @@ i = 0
 # Speeed is the refresh rate of the game, making it smaller makes it seem as if both beys are going faster. Lowest number
 # is 1 highest number is 80. After 60 it starts to look wonky.
 speeed = 50
-playerx = 15
+#velocity of players in the x direction
+player1x = 15
+player2x = 10
+#velocity of players in the y direction
+player1y = 0
+player2y = 0
 done = False
 sprites = pygame.sprite.Group()
-sprites.add(player2)
+players = pygame.sprite.Group()
+players.add(player2)
 sprites.add(arena)
 
 while not done:
@@ -100,7 +107,6 @@ while not done:
     # screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
     # format error screen.blit(object (x,y))
     # update probaby needs to happen hear in loop
-    print(position)
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
     screen.blit(Background, (0, 0))
     # Again, please ignore x.
@@ -109,13 +115,22 @@ while not done:
     i += 1
     i = i % 9
     if not pygame.sprite.spritecollide(player1, sprites, False, pygame.sprite.collide_mask):
-        playerx = playerx * -1
+        player1x = player1x * -1 + random.random() * 10
+        player1y = player1y * -1 + random.random() * 10
+        player2x = player2x * -1
+        player2y = player2y * -1
 
-    print(arena.rect)
-    player1.update(playerx)
-    player2.update(0)
-    player2.draw(screen,200)
-    player1.draw(screen,400)
+
+    elif pygame.sprite.spritecollide(player1, players, False, pygame.sprite.collide_mask):
+        player1x = player1x * -1 + random.random() * 10
+        player1y = player1y * -1 + random.random() * 10
+        player2x = player2x * -1
+        player2y = player2y * -1
+
+    player1.update(player1x, player1y)
+    player2.update(player2x, player2y)
+    player2.draw(screen)
+    player1.draw(screen)
     arena.update()
     pygame.display.flip()
     pygame.time.delay(speeed)

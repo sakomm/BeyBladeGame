@@ -94,7 +94,7 @@ def Instuctions(): # Make instuctions when everything is done
 
 def MainGame():
     print("test passed")
-    import MainGame # if this fucjks up make it a shell proccesp
+    exec(open("./MainGame.py").read())
 
 
 MainMenu()
