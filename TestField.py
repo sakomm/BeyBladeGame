@@ -1,13 +1,29 @@
+import os
+import sys
+
 import pygame
 from pygame.locals import *
+
 #WTF am i doing here, where the fuck is locals
 from BeyBlade import BeyBlade
 from GeneralSprite import GeneralSprite
+
 """"
 import numpy # use numpy to model path
 
 """
 
+os.environ['SDL_VIDEO_CENTERED'] = '1'
+
+pygame.init()
+pygame.font.init()
+    
+screenInfo = pygame.display.Info()  # grabbing
+Screen_Width = screenInfo.current_w
+Screen_Height = screenInfo.current_h
+screen = pygame.display.set_mode(
+    (Screen_Width, Screen_Height))  # set size here
+ 
 # This part is important, creates an array of each bey's images. Cycling through the images makes it spin.
 # Each image is transformed and made smaller to better fit the arena
 player1Spin = [pygame.transform.scale(pygame.image.load('Pegasus/Pegasus1.png'), (220, 220)),
@@ -30,11 +46,11 @@ player2Spin = [pygame.transform.scale(pygame.image.load('LDrago/LDrago1.png'), (
                pygame.transform.scale(pygame.image.load('LDrago/LDrago8.png'), (200, 200)),
                pygame.transform.scale(pygame.image.load('LDrago/LDrago9.png'), (200, 200))]
 
-pygame.init()
 
-screen = pygame.display.set_mode((1200, 1200))
 
-Background = pygame.image.load('ArenaBeyBladeVroom.jpg').convert()
+
+
+Background = pygame.image.load('Images/ArenaBeyBladeVroom.jpg').convert()
 
 boundsPicture = pygame.transform.scale(pygame.image.load('bounds.png'), (750, 750))
 
