@@ -15,14 +15,15 @@ class BeyBlade(pygame.sprite.Sprite):
         self.mask = pygame.mask.from_surface(self.image)
         self.olist = self.mask.outline()
 
-    def update(self, numm):
+    def update(self, xchange, ychange):
         BeyBlade.number += 1
-        self.rect.x = self.rect.x + numm
+        self.rect.x = self.rect.x + xchange
+        self.rect.y = self.rect.y + ychange
         self.image = self.list[BeyBlade.number % 9]
         self.mask = pygame.mask.from_surface(self.image.convert_alpha())
         self.olist = self.mask.outline()
 
-    def draw(self, screen, y):
-        screen.blit(self.image, (self.rect.x, y))
+    def draw(self, screen):
+        screen.blit(self.image, (self.rect.x, self.rect.y))
 
 
