@@ -11,7 +11,7 @@ from GeneralSprite import GeneralSprite
 """"
 import numpy # use numpy to model path
 
-"""
+""" 
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'
 
@@ -50,7 +50,7 @@ player2Spin = [pygame.transform.scale(pygame.image.load('LDrago/LDrago1.png'), (
 
 
 
-Background = pygame.image.load('Images/ArenaBeyBladeVroom.jpg').convert()
+Background = pygame.transform.scale(pygame.image.load('Images/ArenaBeyBladeVroom.jpg').convert(), (Screen_Height,Screen_Height))
 
 boundsPicture = pygame.transform.scale(pygame.image.load('bounds.png'), (750, 750))
 
@@ -93,16 +93,42 @@ sprites = pygame.sprite.Group()
 sprites.add(player2)
 sprites.add(arena)
 
+timer = 11
+while timer != 0:
+    timer -= 1
+    pg.time.delay(500)
+    for event in pg.event.get():
+        if event.type == KEYDOWN:
+            if event.key == pg.K_q:
+                player1Counter += 1
+
+        #if event.type == KEYDOWN:
+            if event.key == pg.K_m:
+                player2Counter += 1
+
+    screen.fill((114, 89, 255))
+    myfont = pg.font.SysFont('Robotico', 150)
+    
+
+    text = str(timer)
+    textsurface = myfont.render(text, False, (0, 0, 0))
+    screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
+
+    pg.display.flip()
+
+
 while not done:
     for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
+        if event.type == KEYDOWN:
+            if event.key == K_ESCAPE:
+            
+                done = True
     # screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
     # format error screen.blit(object (x,y))
     # update probaby needs to happen hear in loop
-    print(position)
+    print(position) 
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
-    screen.blit(Background, (0, 0))
+    screen.blit(Background, (Screen_Width//2 - 550, 0))
     # Again, please ignore x.
     # changing i also changes how the beyblades look like when spinning. i = 1 means normal i = 4 means slightly faster
     # looking spinning. not that useful but thought u should know
