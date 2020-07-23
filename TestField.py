@@ -133,10 +133,7 @@ while not done:
     # screen.blit(player,(500,500)) #blit is temporary and crashes , How to fix?
     # format error screen.blit(object (x,y))
     # update probaby needs to happen hear in loop
-<<<<<<< HEAD
     print(position) 
-=======
->>>>>>> b5b29579303bc0a070badab3e0564fc6fca00ed9
     # pygame.draw.rect(screen, (0, 128, 255), pygame.Rect(500, 500, 100, 100))
     screen.blit(Background, (Screen_Width//2 - 550, 0))
     # Again, please ignore x.
