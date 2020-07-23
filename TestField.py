@@ -22,6 +22,10 @@ pygame.font.init()
 screenInfo = pygame.display.Info()  # grabbing
 Screen_Width = screenInfo.current_w
 Screen_Height = screenInfo.current_h
+
+ClickPostWidth = Screen_Width // 2 
+ClickPostHeight = Screen_Height // 2  - 100
+
 screen = pygame.display.set_mode(
     (Screen_Width, Screen_Height))  # set size here
  
@@ -53,7 +57,7 @@ player2Spin = [pygame.transform.scale(pygame.image.load('LDrago/LDrago1.png'), (
 
 Background = pygame.transform.scale(pygame.image.load('Images/ArenaBeyBladeVroom.jpg').convert(), (Screen_Height,Screen_Height))
 
-boundsPicture = pygame.transform.scale(pygame.image.load('bounds.png'), (750, 750))
+boundsPicture = pygame.transform.scale(pygame.image.load('Images/bounds.png'), (Screen_Height, Screen_Height))
 
 pygame.display.set_caption('BeyBlade Game')
 
@@ -103,25 +107,25 @@ sprites.add(arena)
 timer = 11
 while timer != 0:
     timer -= 1
-    pg.time.delay(500)
-    for event in pg.event.get():
+    pygame.time.delay(500)
+    for event in pygame.event.get():
         if event.type == KEYDOWN:
-            if event.key == pg.K_q:
+            if event.key == pygame.K_q:
                 player1Counter += 1
 
         #if event.type == KEYDOWN:
-            if event.key == pg.K_m:
+            if event.key == pygame.K_m:
                 player2Counter += 1
 
     screen.fill((114, 89, 255))
-    myfont = pg.font.SysFont('Robotico', 150)
+    myfont = pygame.font.SysFont('Robotico', 150)
     
 
     text = str(timer)
     textsurface = myfont.render(text, False, (0, 0, 0))
     screen.blit(textsurface, (ClickPostWidth, ClickPostHeight))
 
-    pg.display.flip()
+    pygame.display.flip()
 
 
 while not done:
