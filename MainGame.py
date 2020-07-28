@@ -81,6 +81,7 @@ ClickPostHeight = Screen_Height // 2 - 100
 
 healthSurface = pg.Surface((Screen_Width, Screen_Height))
 
+MiniGameSurface = pg.Surface((100,100))
 # init the player health
 
 player1Health = 100
