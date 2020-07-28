@@ -69,6 +69,7 @@ Screen_Height = screenInfo.current_h + 70
 screen = pg.display.set_mode(
     (Screen_Width, Screen_Height))  # set size here
 
+
 # player1 obj - Pegasus
 player1 = BeyBlade(player1Spin, 1)
 player1.rect.x = Screen_Width / 2 - 200
@@ -94,6 +95,9 @@ ClickPostHeight = Screen_Height // 2 - 100
 # pregame sextion
 
 healthSurface = pg.surface.Surface((Screen_Width, Screen_Height))
+
+#init the player health 
+
 player1Health = 100
 player2Health = 100
 
