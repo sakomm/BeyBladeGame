@@ -1,6 +1,8 @@
 """ Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
  tool so might use that
 """
+from GeneralSprite import GeneralSprite
+from BeyBlade import BeyBlade
 import os
 import sys
 
@@ -14,52 +16,35 @@ from pygame.locals import *
 import numpy # use numpy to model path
 
 """
-from BeyBlade import BeyBlade
-from GeneralSprite import GeneralSprite
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
 
 # This part is important, creates an array of each bey's images. Cycling through the images makes it spin.
 # Each image is transformed and made smaller to better fit the arena
-player1Spin = [pg.transform.scale(pg.image.load(
-    'Images/Pegasus/Pegasus1.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus2.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus3.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus4.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus5.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus6.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus7.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/Pegasus/Pegasus8.png'), (220, 220)),
-    pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus9.png'), (220, 220))]
+player1Spin = [ pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus1.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus2.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus3.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus4.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus5.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus6.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus7.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus8.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus9.png'), (220, 220))]
 
-player2Spin = [pg.transform.scale(pg.image.load(
-    'Images/LDrago/LDrago1.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago2.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago3.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago4.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago5.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago6.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago7.png'), (220, 220)),
-    pg.transform.scale(pg.image.load(
-        'Images/LDrago/LDrago8.png'), (220, 220)),
-    pg.transform.scale(pg.image.load('Images/LDrago/LDrago9.png'), (220, 220))]
+player2Spin = [ pg.transform.scale(pg.image.load('Images/LDrago/LDrago1.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago2.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago3.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago4.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago5.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago6.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago7.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago8.png'), (220, 220)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago9.png'), (220, 220))]
 
-pg.init()  #read this in a british accent
+pg.init()  # read this in a british accent
 
-Background = pg.transform.scale(pg.image.load('Images/ArenaBeyBladeVroom.jpg'), (1110, 1110))
+Background = pg.transform.scale(pg.image.load(
+    'Images/ArenaBeyBladeVroom.jpg'), (1110, 1110))
 
 pg.display.set_caption('BeyBlade Game')
 
@@ -94,9 +79,9 @@ ClickPostWidth = Screen_Width // 2
 ClickPostHeight = Screen_Height // 2 - 100
 # pregame sextion
 
-healthSurface = pg.surface.Surface((Screen_Width, Screen_Height))
+healthSurface = pg.Surface((Screen_Width, Screen_Height))
 
-#init the player health 
+# init the player health
 
 player1Health = 100
 player2Health = 100
@@ -104,7 +89,7 @@ player2Health = 100
 timer = 11
 while timer != 0:
     timer -= 1
-    pg.time.delay(500)
+    #pg.time.delay(500) add when finish debuging
     for event in pg.event.get():
         if event.type == KEYDOWN:
             if event.key == pg.K_q:
@@ -136,6 +121,8 @@ pg.display.flip()
 # Background obj
 
 screen.blit(Background, (360, 0))
+screen.blit(healthSurface, (0, 0))
+
 
 clock = pg.time.Clock()
 i = 0
@@ -144,11 +131,11 @@ i = 0
 speeed = 50
 
 # velocity of players in the x direction (will be based off of how much they let it rip)
-player1x = -player1Counter * 2  
+player1x = -player1Counter * 2
 player2x = -player2Counter * 2
 # velocity of players in the y direction (will be based off of how much they let it rip)
-player1y = random.randint(-10,10)
-player2y = random.randint(-10,10)
+player1y = random.randint(-10, 10)
+player2y = random.randint(-10, 10)
 done = False
 sprites = pg.sprite.Group()
 players = pg.sprite.Group()
@@ -156,18 +143,18 @@ players.add(player2)
 sprites.add(arena)
 
 done = True
-#the variation whenever the beys bump off the arena, so they wont go the opposite direction
+# the variation whenever the beys bump off the arena, so they wont go the opposite direction
 WallCollisionVar = 15
-#the variation whenever the beys collide off of each other
+# the variation whenever the beys collide off of each other
 BeyCollisionVar = 20
 
 while done:
 
-    #refresh rate of the player images
+    # refresh rate of the player images
     i += 3
     i = i % 9
 
-    #so the beys don't fly themselves off the map after gaining a shit ton of speed
+    # so the beys don't fly themselves off the map after gaining a shit ton of speed
     if(player1x > 50):
         player1x = player1x - 20
     if(player2x > 50):
@@ -233,11 +220,16 @@ while done:
 
     player1.update(player1x, player1y)
     player2.update(player2x, player2y)
+    
     screen.blit(Background, (360, 0))
+    
     player2.draw(screen)
     player1.draw(screen)
-    screen.blit(boundsPicture, (arena.rect.x,arena.rect.y))
+    
+    screen.blit(boundsPicture, (arena.rect.x, arena.rect.y))
+    
     pg.display.flip()
+    
     pg.time.delay(speeed)
 
     for event in pg.event.get():
@@ -245,8 +237,17 @@ while done:
             if event.key == K_ESCAPE:
                 pg.quit()
                 sys.exit()
+            
+            if event.key == pg.K_q:
+                player1Counter += 1
+
+            # if event.type == KEYDOWN:
+            if event.key == pg.K_m:
+                player2Counter += 1
+
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
     pg.draw.rect(healthSurface, [255, 255, 255], (50, 100, 0, 0))
+    pg.healthSurface.blit()
 
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
 
