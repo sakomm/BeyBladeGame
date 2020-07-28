@@ -150,6 +150,12 @@ BeyCollisionVar = 20
 
 while done:
 
+    # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
+    pg.draw.rect(healthSurface, [255, 255, 255], (50, 100, 0, 0))
+    screen.blit(healthSurface,(0,0))
+
+    # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
+
     # refresh rate of the player images
     i += 3
     i = i % 9
@@ -245,14 +251,9 @@ while done:
             if event.key == pg.K_m:
                 player2Counter += 1
 
-    # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-    pg.draw.rect(healthSurface, [255, 255, 255], (50, 100, 0, 0))
-    pg.healthSurface.blit()
-
-    # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-
     # screen.blit(healthSurface)
     pg.display.flip()
+    pg.display.update()
     pg.time.delay(speeed)
 
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
