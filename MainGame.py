@@ -90,7 +90,8 @@ player2Health = 100
 timer = 11
 while timer != 0:
     timer -= 1
-    #pg.time.delay(500) add when finish debuging
+    
+    pg.time.delay(500)
     for event in pg.event.get():
         if event.type == KEYDOWN:
             if event.key == pg.K_q:
@@ -148,16 +149,26 @@ done = True
 WallCollisionVar = 15
 # the variation whenever the beys collide off of each other
 BeyCollisionVar = 20
-
+healthMinimizerInator = 500
 while done:
 
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-    pg.draw.rect(healthSurface, [255, 0, 0], (50, 100, 50, 50))
+    #pg.draw.rect(healthSurface, [255, 0, 0], (50, 100, 50, 50))
     
-    redBar= pg.Rect((100,100), (50, 100))
-    pg.display.update(pg.draw.rect(healthSurface, (200, 155, 255), redBar))
+    redBar = pg.Rect((50,50), (50, 500))
+    greenBar = pg.Rect((50,50), (50, healthMinimizerInator))
 
-    screen.blit(healthSurface,(100,100))
+    pg.display.update(pg.draw.rect(healthSurface, (250, 0, 0), redBar))
+    pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar))
+    '''
+    if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
+        healthMinimizerInator = healthMinimizerInator - 10
+    '''
+    healthMinimizerInator = healthMinimizerInator - 10
+    
+    screen.blit(healthSurface,(200,100))
+    
+  
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
 
     # refresh rate of the player images
