@@ -152,9 +152,12 @@ BeyCollisionVar = 20
 while done:
 
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
-    pg.draw.rect(healthSurface, [255, 255, 255], (50, 100, 0, 0))
-    screen.blit(healthSurface,(0,0))
+    pg.draw.rect(healthSurface, [255, 0, 0], (50, 100, 50, 50))
+    
+    redBar= pg.Rect((100,100), (50, 100))
+    pg.display.update(pg.draw.rect(healthSurface, (200, 155, 255), redBar))
 
+    screen.blit(healthSurface,(100,100))
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
 
     # refresh rate of the player images
