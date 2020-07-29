@@ -160,11 +160,11 @@ while done:
 
     pg.display.update(pg.draw.rect(healthSurface, (250, 0, 0), redBar))
     pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar))
-    '''
+    
     if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
-        healthMinimizerInator = healthMinimizerInator - 10
-    '''
-    healthMinimizerInator = healthMinimizerInator - 10
+        healthMinimizerInator = healthMinimizerInator - 2
+    
+    #healthMinimizerInator = healthMinimizerInator - 10
     
     screen.blit(healthSurface,(200,100))
     
