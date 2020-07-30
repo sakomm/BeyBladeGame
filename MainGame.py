@@ -150,6 +150,7 @@ WallCollisionVar = 15
 # the variation whenever the beys collide off of each other
 BeyCollisionVar = 20
 healthMinimizerInator = 500
+healthMinimizerInator2 = 500
 while done:
 
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
@@ -161,11 +162,18 @@ while done:
     pg.display.update(pg.draw.rect(healthSurface, (250, 0, 0), redBar))
     pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar))
     
+    #healthMinimizerInator = healthMinimizerInator - 
+    redBar2 = pg.Rect((1200,50),(50,500))
+    greenBar2 = pg.Rect((50,50), (50, healthMinimizerInator2))
+
+    pg.display.update(pg.draw.rect(healthSurface, (250, 0, 0), redBar2))
+    pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar2))
+    
     if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
         healthMinimizerInator = healthMinimizerInator - 2
-    
-    #healthMinimizerInator = healthMinimizerInator - 10
-    
+    if pg.sprite.spritecollide(player2, sprites, False, pg.sprite.collide_mask):
+        healthMinimizerInator = healthMinimizerInator - 2
+
     screen.blit(healthSurface,(200,100))
     
   
