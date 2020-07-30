@@ -163,8 +163,8 @@ while done:
     pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar))
     
     #healthMinimizerInator = healthMinimizerInator - 
-    redBar2 = pg.Rect((1200,50),(50,500))
-    greenBar2 = pg.Rect((50,50), (50, healthMinimizerInator2))
+    redBar2 = pg.Rect((1335,50),(50,500))
+    greenBar2 = pg.Rect((1335,50), (50, healthMinimizerInator2))
 
     pg.display.update(pg.draw.rect(healthSurface, (250, 0, 0), redBar2))
     pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar2))
