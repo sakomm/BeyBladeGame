@@ -172,7 +172,7 @@ while done:
     if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
         healthMinimizerInator = healthMinimizerInator - 2
     if pg.sprite.spritecollide(player2, sprites, False, pg.sprite.collide_mask):
-        healthMinimizerInator = healthMinimizerInator - 2
+        healthMinimizerInator = healthMinimizerInator2 - 2
 
     screen.blit(healthSurface,(200,100))
     
