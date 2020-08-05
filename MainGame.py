@@ -124,6 +124,8 @@ pg.display.flip()
 
 screen.blit(Background, (360, 0))
 screen.blit(healthSurface, (0, 0))
+screen.blit(MiniGameSurface, (Screen_Width//2,Screen_Height//2))
+
 
 
 clock = pg.time.Clock()
@@ -151,6 +153,7 @@ WallCollisionVar = 15
 BeyCollisionVar = 20
 healthMinimizerInator = 500
 healthMinimizerInator2 = 500
+
 while done:
 
     # ---------------------------------------------HEALTH BARS-------------------------------------------------------------------
@@ -170,9 +173,9 @@ while done:
     pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar2))
     
     if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
-        healthMinimizerInator = healthMinimizerInator - 2
+        healthMinimizerInator = healthMinimizerInator - 20
     if pg.sprite.spritecollide(player2, sprites, False, pg.sprite.collide_mask):
-        healthMinimizerInator = healthMinimizerInator2 - 2
+        healthMinimizerInator = healthMinimizerInator2 - 20
 
     screen.blit(healthSurface,(200,100))
     
