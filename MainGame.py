@@ -1,46 +1,42 @@
 """ Atom dosent have a # DEBUG: so im fucking dumb but apparently VSC still has a collobration
  tool so might use that
 """
-from GeneralSprite import GeneralSprite
 from BeyBlade import BeyBlade
-import os
+from GeneralSprite import GeneralSprite
 import sys
+import os
 
 # from pg.locals import * # WTF am i doing here, where the fuck is locals
-import pygame as pg
 import random
 
+import pygame as pg
 from pygame.locals import *
-
-""""
-import numpy # use numpy to model path
-
-"""
 
 os.environ['SDL_VIDEO_CENTERED'] = '1'  # prepriping info gathering
 
 # This part is important, creates an array of each bey's images. Cycling through the images makes it spin.
 # Each image is transformed and made smaller to better fit the arena
-player1Spin = [ pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus1.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus2.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus3.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus4.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus5.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus6.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus7.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus8.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus9.png'), (220, 220))]
 
-player2Spin = [ pg.transform.scale(pg.image.load('Images/LDrago/LDrago1.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago2.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago3.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago4.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago5.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago6.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago7.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago8.png'), (220, 220)),
-                pg.transform.scale(pg.image.load('Images/LDrago/LDrago9.png'), (220, 220))]
+player1Spin = [ pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus1.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus2.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus3.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus4.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus5.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus6.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus7.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus8.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/Pegasus/Pegasus9.png'), (260, 260))]
 
+
+player2Spin = [ pg.transform.scale(pg.image.load('Images/LDrago/LDrago1.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago2.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago3.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago4.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago5.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago6.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago7.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago8.png'), (260, 260)),
+                pg.transform.scale(pg.image.load('Images/LDrago/LDrago9.png'), (260, 260))]
 pg.init()  # read this in a british accent
 
 Background = pg.transform.scale(pg.image.load(
@@ -50,7 +46,7 @@ pg.display.set_caption('BeyBlade Game')
 
 screenInfo = pg.display.Info()  # grabbing
 Screen_Width = screenInfo.current_w
-Screen_Height = screenInfo.current_h + 70
+Screen_Height = screenInfo.current_h 
 screen = pg.display.set_mode(
     (Screen_Width, Screen_Height))  # set size here
 
@@ -128,14 +124,13 @@ screen.blit(MiniGameSurface, (Screen_Width//2,Screen_Height//2))
 
 
 
-clock = pg.time.Clock()
 i = 0
 # Speeed is the refresh rate of the game, making it smaller makes it seem as if both beys are going faster. Lowest number
 # is 1 highest number is 80. After 60 it starts to look wonky.
 speeed = 50
 
 # velocity of players in the x direction (will be based off of how much they let it rip)
-player1x = -player1Counter * 2
+player1x = -10
 player2x = -player2Counter * 2
 # velocity of players in the y direction (will be based off of how much they let it rip)
 player1y = random.randint(-10, 10)
@@ -145,6 +140,11 @@ sprites = pg.sprite.Group()
 players = pg.sprite.Group()
 players.add(player2)
 sprites.add(arena)
+
+def Walls(player1xT,player1yT):
+    if(player1.rect.x < 300):
+        print(player1xT)
+        player1x = player1xT + 3
 
 done = True
 # the variation whenever the beys bump off the arena, so they wont go the opposite direction
@@ -172,10 +172,10 @@ while done:
     pg.display.update(pg.draw.rect(healthSurface, (250, 0, 0), redBar2))
     pg.display.update(pg.draw.rect(healthSurface, (0, 250, 0), greenBar2))
     
-    if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
+    if pg.sprite.spritecollide(player1, players, False, pg.sprite.collide_mask):
         healthMinimizerInator = healthMinimizerInator - 20
-    if pg.sprite.spritecollide(player2, sprites, False, pg.sprite.collide_mask):
-        healthMinimizerInator = healthMinimizerInator2 - 20
+        healthMinimizerInator2 = healthMinimizerInator2 - 20
+        
 
     screen.blit(healthSurface,(200,100))
     
@@ -195,18 +195,11 @@ while done:
         player1y = player1y - 20
     if(player2y > 50):
         player2y = player2y - 20
+    print(player1x)
+    Walls(player1x,player1y)
 
-    if pg.sprite.spritecollide(player1, sprites, False, pg.sprite.collide_mask):
-        player1x = player1x * -1
-        if(player1x > 0):
-            player1x = player1x + random.randint(0, WallCollisionVar)
-        if(player1x < 0):
-            player1x = player1x + random.randint(-WallCollisionVar, 0)
-        player1y = player1y * -1
-        if(player1y > 0):
-            player1y = player1y + random.randint(0, WallCollisionVar)
-        if(player1y < 0):
-            player1y = player1y + random.randint(-WallCollisionVar, 0)
+
+    print(player1x)
 
     if pg.sprite.spritecollide(player2, sprites, False, pg.sprite.collide_mask):
         player2x = player2x * -1
@@ -219,7 +212,6 @@ while done:
             player2y = player2y + random.randint(0, WallCollisionVar)
         if(player2y < 0):
             player2y = player2y + random.randint(-WallCollisionVar, 0)
-
     elif pg.sprite.spritecollide(player1, players, False, pg.sprite.collide_mask):
         if (player1x * player2x) < 0:
             if(player1x < 0):
@@ -282,5 +274,7 @@ while done:
     pg.display.update()
     pg.time.delay(speeed)
 
+
+    
 # for movement we cant use random values but we can [A,B,C,D] and change the rates at which each grow and decrease to
 # make random movement

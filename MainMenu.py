@@ -91,10 +91,8 @@ def MainMenu():
 def Instuctions(): # Make instuctions when everything is done 
     import Instructions
 
-
 def MainGame():
-    print("test passed")
-    exec(open("./MainGame.py").read())
+    import MainGame
 
 
 MainMenu()
